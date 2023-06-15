@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>react로 버튼 클릭 수 세기</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const $root = document.getElementById('root');
+    /*const h3 = React.createElement('h3',
+    {
+      id: "title",
+      onMouseEnter: () => console.log('mouse enter'),
+    },
+    "Hello I'm a h3"); // h3 태그 생성, property 생성, h3 안에 들어갈 contents
+
+    const btn = React.createElement('button',
+      {
+        onClick: () => console.log("i'm clicked"),
+        style: {
+          background: "tomato",
+        }
+      },
+      'Click me'); //property자리에 event listener function작성 가능
+
+      const container = React.createElement('div', null, [h3, btn]);
+       ReactDOM.render(container, $root) // 사용자에게 보여준다
+    */
+
+    //JSX 표현식
+    /*
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log('mouse enter')}>Hello I'm a title</h3>
+      );
+    } 
+    const Button = () => (
+      <button
+        style={{
+          background: "tomato",
+        }}
+        onClick={() => console.log("i'm clicked")}>Click me</button>
+    );
+    const Container = () => (
+      <div>
+        <Title />
+        < Button />
+      </div>
+    ); //컴포넌트의 첫 글자는 반드시 대문자여야 한다.
+    // const container = React.createElement('div', null, [Title, Button]);
+    ReactDOM.render(<Container />, $root) // 사용자에게 보여준다
+    */
+    function App() {
+      const [counter, setCounter] = React.useState(0);
+      // const counter = data[0];
+      // const modifier = data[1];
+      // modifier함수호 seate를 바꿀때, 새로운 값을 가지고 컴포넌트 전체가 재생성된다.
+      const onClick = () => {
+        // setCounter(counter+1);
+        setCounter((current) => current + 1);
+        //현재 state를 바탕으로 다음 state를 계산해내고 싶다면, 함수를 사용.
+      };
+      console.log('rendered');
+      console.log(counter);
+      // console.log(data) //[undefined, ƒ] ==> [초기값, data를 바꿀때 사용하는 함수]
+      return (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, $root);// 렌더링
+  </script>
+</body>
+
+</html>
