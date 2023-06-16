@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Props Types</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    //컴포넌트의 첫 글자는 반드시 대문자여야 한다. // 컴포넌트 === 어떤 JSX를 반환하는 함수
+    function Btn({ text, fontSize = 12 }) { //Btn(props) // fontSize = 12 fontSize prop이 정의되지 않았다면 12 기본값.
+      console.log(text, "was rendered");
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize,
+          }}>
+          {text}
+        </button>
+      );
+    }
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired, //isRequired 사용하면 필수로 적용되어야할 prop을 설정하는 것.
+      fontSize: PropTypes.number,
+    }
+    function App() {
+      return (
+        <div>
+          <Btn text="Save Changes" fontSize={18} />
+          <Btn text={"Continue"} />
+        </div>
+      );
+    };
+    const $root = document.getElementById('root');
+    ReactDOM.render(<App />, $root);// 렌더링
+  </script>
+</body>
+
+</html>
